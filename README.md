@@ -31,6 +31,9 @@ All changes are optional and can be switched off in configuration menu `/hsk`
 4. Copy the folder `HunterSwissKnife` into `YOURWOWDIRECTORY\Interface\AddOns`
 5. Restart WoW
 
+#### NB: ruRU Locale (Заметка для использующих русификатор для клиента)
+Если ваш русификатор оставляет названия спеллов на английском языке, пожалуйста, удалите файл `ruRU.lua` в папке `Locale`.
+
 ## Commands
 
 `/hsk` or `/hunterswissknife` - open the configuration menu.
