@@ -1,0 +1,156 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+    <Script file="MainMenu.lua"/>
+
+    <Frame name="HSK_UI_MAINMENU" inherits="HSK_UI_TEMPLATE_WINDOW">
+        <Frames>
+
+            <CheckButton name="$parent_CHECKBOX_ASPECTSOVERRIDE"
+                         inherits="OptionsCheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT">
+                        <Offset x="25" y="-35"/>
+                    </Anchor>
+                </Anchors>
+
+                <Scripts>
+                    <OnLoad>
+                        getglobal(this:GetName().."Text"):SetText(HSK_UI_MAINMENU_CHECKBOX_ASPECTSOVERRIDE_TEXT);
+                    </OnLoad>
+                    <OnClick>
+                        HSK_UI_MainMenu_CheckBox_OnClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <CheckButton name="$parent_CHECKBOX_ASPECTSANTIDAZE"
+                         inherits="OptionsCheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOP" 
+                            relativeTo="$parent_CHECKBOX_ASPECTSOVERRIDE" 
+                            relativePoint="BOTTOM"/>
+                </Anchors>
+
+                <Scripts>
+                    <OnLoad>
+                        getglobal(this:GetName() .. "Text"):SetText(HSK_UI_MAINMENU_CHECKBOX_ASPECTSANTIDAZE_TEXT);
+                    </OnLoad>
+                    <OnClick>
+                        HSK_UI_MainMenu_CheckBox_OnClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <CheckButton name="$parent_CHECKBOX_AIMEDSHOTCASTBAR"
+                         inherits="OptionsCheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOP" 
+                            relativeTo="$parent_CHECKBOX_ASPECTSANTIDAZE" 
+                            relativePoint="BOTTOM"/>
+                </Anchors>
+
+                <Scripts>
+                    <OnLoad>
+                        getglobal(this:GetName() .. "Text"):SetText(HSK_UI_MAINMENU_CHECKBOX_AIMEDSHOTCASTBAR_TEXT);
+                    </OnLoad>
+                    <OnClick>
+                        HSK_UI_MainMenu_CheckBox_OnClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+
+            <CheckButton name="$parent_CHECKBOX_AUTOSHOTCASTBAR"
+                         inherits="OptionsCheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" 
+                            relativeTo="$parent_CHECKBOX_ASPECTSOVERRIDE" 
+                            relativePoint="TOPRIGHT">
+                        <Offset x="120" y="0"/>
+                    </Anchor>
+                </Anchors>
+
+                <Scripts>
+                    <OnLoad>
+                        getglobal(this:GetName() .. "Text"):SetText(HSK_UI_MAINMENU_CHECKBOX_AUTOSHOTCASTBAR_TEXT);
+                    </OnLoad>
+                    <OnClick>
+                        HSK_UI_MainMenu_CheckBox_OnClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <CheckButton name="$parent_CHECKBOX_AUTOSHOTOVERRIDE"
+                         inherits="OptionsCheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOP"
+                            relativeTo="$parent_CHECKBOX_AUTOSHOTCASTBAR"
+                            relativePoint="BOTTOM"/>
+                </Anchors>
+
+                <Scripts>
+                    <OnLoad>
+                        getglobal(this:GetName().."Text"):SetText(HSK_UI_MAINMENU_CHECKBOX_AUTOSHOTOVERRIDE_TEXT);
+                    </OnLoad>
+                    <OnClick>
+                        HSK_UI_MainMenu_CheckBox_OnClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+            <CheckButton name="$parent_CHECKBOX_CALLPETOVERRIDE"
+                         inherits="OptionsCheckButtonTemplate">
+                <Anchors>
+                    <Anchor point="TOP" 
+                            relativeTo="$parent_CHECKBOX_AUTOSHOTOVERRIDE" 
+                            relativePoint="BOTTOM"/>
+                </Anchors>
+
+                <Scripts>
+                    <OnLoad>
+                        getglobal(this:GetName() .. "Text"):SetText(HSK_UI_MAINMENU_CHECKBOX_CALLPETOVERRIDE_TEXT);
+                    </OnLoad>
+                    <OnClick>
+                        HSK_UI_MainMenu_CheckBox_OnClick();
+                    </OnClick>
+                </Scripts>
+            </CheckButton>
+
+
+            <Button name="$parent_BUTTON_DEFAULT" 
+                    inherits="OptionsButtonTemplate" 
+                    text="HSK_UI_MAINMENU_BUTTON_DEFAULT_TEXT">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT">
+                        <Offset x="10" y="11"/>
+                    </Anchor>
+                </Anchors>
+
+                <Scripts>
+                    <OnClick>
+                        HSK_UI_MainMenu_Button_Default_OnClick();
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <Button name="$parent_BUTTON_SAVE" 
+                    inherits="OptionsButtonTemplate" 
+                    text="HSK_UI_MAINMENU_BUTTON_SAVE_TEXT">
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT">
+                        <Offset x="-10" y="11"/>
+                    </Anchor>
+                </Anchors>
+
+                <Scripts>
+                    <OnClick>
+                        HSK_UI_MainMenu_Button_Save_OnClick();
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+        </Frames>
+    </Frame>
+</Ui>

@@ -1,0 +1,32 @@
+## Interface: 11200
+## Title: HunterSwissKnife
+## Notes: Set of useful stuff for hunters.
+## Version: 1.1
+## Author: Anielle
+## SavedVariables: HSK_Settings
+
+## X-License: MIT
+## X-Website: https://github.com/anstellaire/HunterSwissKnife
+
+Core\Aliases\Auras.lua
+Core\Aliases\Colors.lua
+Core\Core.lua
+
+Locale\enUS.lua
+Locale\deDE.lua
+Locale\frFR.lua
+Locale\ruRU.lua
+Locale\zhCN.lua
+Locale\zhTW.lua
+
+UI\Templates\Window.xml
+UI\MainMenu\MainMenu.xml
+
+Modules\AimedShotCastbar\AimedShotCastbar.lua
+Modules\AspectsAntiDaze\AspectsAntiDaze.lua
+Modules\AspectsOverride\AspectsOverride.lua
+Modules\AutoShotCastbar\AutoShotCastbar.xml
+Modules\AutoShotOverride\AutoShotOverride.lua
+Modules\CallPetOverride\CallPetOverride.lua
+
+HunterSwissKnife.xml

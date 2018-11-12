@@ -1,0 +1,66 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.blizzard.com/wow/ui/">
+
+    <Frame name="HSK_UI_TEMPLATE_WINDOW" virtual="true">
+        <Size x="360" y="180"/>
+
+        <Anchors>
+            <Anchor point="CENTER">
+                <Offset x="0" y="0"/>
+            </Anchor>
+        </Anchors>
+
+        <Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background"
+                  edgeFile="Interface\DialogFrame\UI-DialogBox-Border"
+                  tile="true">
+            <TileSize val="32"></TileSize>
+            <EdgeSize val="32"></EdgeSize>
+
+            <BackgroundInsets left="11" right="12" top="12" bottom="11"/>
+
+            <Color       r="0"   g="0"   b="0"   a="0.7"/>
+            <BorderColor r="0.2" g="0.2" b="0.2" a="1.0"/>
+        </Backdrop>
+
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture name="$parent_HEADER"
+                         file="Interface\DialogFrame\UI-DialogBox-Header">
+                    <Anchors>
+                        <Anchor point="TOP">
+                            <Offset x="0" y="12"/>
+                        </Anchor>a
+                    </Anchors>
+                </Texture>
+
+                <FontString inherits="GameFontNormal" 
+                            text="HSK_UI_TEMPLATE_WINDOW_HEADER_TEXT">
+                    <Anchors>
+                        <Anchor point="TOP" relativeTo="$parent_HEADER">
+                            <Offset x="0" y="-13"/>
+                        </Anchor>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Button name="$parent_CLOSE" 
+                    inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT">
+                        <Offset x="-4" y="-4"/>
+                    </Anchor>
+                </Anchors>
+            </Button>
+        </Frames>
+
+        <Scripts>
+            <OnLoad>
+                getglobal(this:GetName().."_HEADER"):SetVertexColor(0.2, 0.2, 0.2, 1);
+                this:Hide();
+            </OnLoad>
+        </Scripts>
+    </Frame>
+</Ui>
