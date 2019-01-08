@@ -10,6 +10,8 @@ local castbarFrame = {
     ["innerBorderWidth"]  = 4;
     ["outerBorderHeight"] = 2;
     ["outerBorderWidth"]  = 2;
+    ["visibleAlpha"]      = 1;
+    ["hiddenAlpha"]       = 0;
 }
 
 local shooting       = false;
@@ -104,14 +106,14 @@ function HSK_Module_AutoShotCastbar_OnUpdate()
             local cposX, cposY = GetPlayerMapPosition("player");
 
             if cposX == posX and cposY == posY then
-                AutoShotCastbarFrame:SetAlpha(1);
+                AutoShotCastbarFrame:SetAlpha(castbarFrame["visibleAlpha"]);
 
                 local timePassed = GetTime() - aimingStart;
                 if timePassed <= aimingTime then
                     AutoShotCastbarBar:SetWidth(AutoShotCastbarFrame:GetWidth() * timePassed/aimingTime);
                 end
             else
-                AutoShotCastbarFrame:SetAlpha(0);
+                AutoShotCastbarFrame:SetAlpha(castbarFrame["hiddenAlpha"]);
                 GunReset();
             end
         end
@@ -123,7 +125,7 @@ function HSK_Module_AutoShotCastbar_OnUpdate()
             );
         else
             if not shooting then
-                AutoShotCastbarFrame:SetAlpha(0);
+                AutoShotCastbarFrame:SetAlpha(castbarFrame["hiddenAlpha"]);
                 AutoShotCastbarBar:SetWidth(0);
             end
             GunReset();
@@ -144,7 +146,7 @@ HSK_Module_AutoShotCastbar_OnEvent["STOP_AUTOREPEAT_SPELL"] = function()
     aimingStart = false;
 
     if not reloadingStart then
-        AutoShotCastbarFrame:SetAlpha(0);
+        AutoShotCastbarFrame:SetAlpha(castbarFrame["hiddenAlpha"]);
     end
 end
 
