@@ -2,10 +2,14 @@ local AutoShotCastbarFrame;
 local AutoShotCastbarBar;
 
 local castbarFrame = {
-    ["posX"]   = 0;
-    ["posY"]   = -235;
-    ["height"] = 12;
-    ["width"]  = 100;
+    ["posX"]              = 0;
+    ["posY"]              = -235;
+    ["height"]            = 12;
+    ["width"]             = 100;
+    ["innerBorderHeight"] = 4;
+    ["innerBorderWidth"]  = 4;
+    ["outerBorderHeight"] = 2;
+    ["outerBorderWidth"]  = 2;
 }
 
 local shooting       = false;
@@ -52,26 +56,31 @@ end
 
 
 function HSK_Module_AutoShotCastbar_CreateBar()
-    castbarFrame["posX"]   = castbarFrame["posX"]   * GetScreenWidth()   / 1000;
-    castbarFrame["posY"]   = castbarFrame["posY"]   * GetScreenHeight()  / 1000;
-    castbarFrame["height"] = castbarFrame["height"] * GetScreenHeight()  / 1000;
-    castbarFrame["width"]  = castbarFrame["width"]  * GetScreenWidth()   / 1000;
+    local posX              = castbarFrame["posX"]   * GetScreenWidth()   / 1000;
+    local posY              = castbarFrame["posY"]   * GetScreenHeight()  / 1000;
+    local height            = castbarFrame["height"] * GetScreenHeight()  / 1000;
+    local width             = castbarFrame["width"]  * GetScreenWidth()   / 1000;
+    local innerBorderHeight = castbarFrame["innerBorderHeight"];
+    local innerBorderWidth  = castbarFrame["innerBorderWidth"];
+    local outerBorderHeight = castbarFrame["outerBorderHeight"];
+    local outerBorderWidth  = castbarFrame["outerBorderWidth"];
 
     local frame = HSK_MODULE_AUTOSHOTCASTBAR;
-    frame:SetHeight(castbarFrame["height"]);
-    frame:SetWidth(castbarFrame["width"]);
-    frame:SetPoint("CENTER", UIParent, "CENTER", castbarFrame["posX"], castbarFrame["posY"]);
+    frame:SetHeight(height);
+    frame:SetWidth(width);
+    frame:SetPoint("CENTER", UIParent, "CENTER", posX, posY);
 
     local bar = HSK_MODULE_AUTOSHOTCASTBAR_BAR;
-    bar:SetHeight(castbarFrame["height"]);
+    bar:SetHeight(height);
+    bar:SetWidth(width);
 
     local innerBorder = HSK_MODULE_AUTOSHOTCASTBAR_INNERBORDER;
-    innerBorder:SetHeight(castbarFrame["height"] + 4);
-    innerBorder:SetWidth(castbarFrame["width"] + 4);
+    innerBorder:SetHeight(height + innerBorderHeight);
+    innerBorder:SetWidth(width + innerBorderWidth);
 
     local outerBorder = HSK_MODULE_AUTOSHOTCASTBAR_OUTERBORDER;
-    outerBorder:SetHeight(castbarFrame["height"] + 6);
-    outerBorder:SetWidth(castbarFrame["width"] + 6);
+    outerBorder:SetHeight(height + innerBorderHeight + outerBorderHeight);
+    outerBorder:SetWidth(width + innerBorderWidth + outerBorderWidth);
 
     AutoShotCastbarFrame = frame;
     AutoShotCastbarBar   = bar;
@@ -99,7 +108,7 @@ function HSK_Module_AutoShotCastbar_OnUpdate()
 
                 local timePassed = GetTime() - aimingStart;
                 if timePassed <= aimingTime then
-                    AutoShotCastbarBar:SetWidth(castbarFrame["width"] * timePassed/aimingTime);
+                    AutoShotCastbarBar:SetWidth(AutoShotCastbarFrame:GetWidth() * timePassed/aimingTime);
                 end
             else
                 AutoShotCastbarFrame:SetAlpha(0);
@@ -109,7 +118,9 @@ function HSK_Module_AutoShotCastbar_OnUpdate()
     else
         local timePassed = GetTime() - reloadingStart;
         if timePassed <= reloadingTime then
-            AutoShotCastbarBar:SetWidth(castbarFrame["width"] - (castbarFrame["width"] * timePassed/reloadingTime));
+            AutoShotCastbarBar:SetWidth(
+                AutoShotCastbarFrame:GetWidth() - (AutoShotCastbarFrame:GetWidth() * timePassed/reloadingTime)
+            );
         else
             if not shooting then
                 AutoShotCastbarFrame:SetAlpha(0);
