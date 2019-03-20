@@ -52,7 +52,7 @@
         </Layers>
 
         <Scripts>
-            <OnLoad>HSK_Module_AutoShotCastbar_CreateBar();</OnLoad>
+            <OnLoad></OnLoad>
         </Scripts>
     </Frame>
 </Ui>

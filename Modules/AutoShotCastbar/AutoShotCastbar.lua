@@ -96,6 +96,8 @@ function HSK_Module_AutoShotCastbar_OnLoad(frame)
     frame:RegisterEvent("SPELLCAST_STOP");
     frame:RegisterEvent("ITEM_LOCK_CHANGED");
 
+    frame:RegisterEvent("ADDON_LOADED");
+
     HSK_Core_PrintToChat(HSK_COLOR_CYAN.."AutoShotCastbar Module |rLoaded");
 end
 
@@ -170,4 +172,8 @@ HSK_Module_AutoShotCastbar_OnEvent["ITEM_LOCK_CHANGED"] = function()
             gCooldownStartOld = gCooldownStart;
         end
     end
+end
+
+HSK_Module_AutoShotCastbar_OnEvent["ADDON_LOADED"] = function()
+    HSK_Module_AutoShotCastbar_CreateBar();
 end
