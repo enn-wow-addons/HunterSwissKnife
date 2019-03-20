@@ -1,17 +1,19 @@
 local AutoShotCastbarFrame;
 local AutoShotCastbarBar;
 
-local castbarFrame = {
-    ["posX"]              = 0;
-    ["posY"]              = -235;
-    ["height"]            = 12;
-    ["width"]             = 100;
-    ["innerBorderHeight"] = 4;
-    ["innerBorderWidth"]  = 4;
-    ["outerBorderHeight"] = 2;
-    ["outerBorderWidth"]  = 2;
-    ["visibleAlpha"]      = 1;
-    ["hiddenAlpha"]       = 0;
+local CBConfig = {
+    x           = 0;
+    y           = -235;
+    height      = 12;
+    width       = 100;
+
+    innerBorder = { height = 4, width  = 4 };
+    outerBorder = { height = 2, width  = 2 };
+
+    reloadColor = { r = 1, g = 0, b = 0 };
+    aimingColor = { r = 1, g = 1, b = 0 };
+
+    alpha       = { visible = 1, hidden  = 0 };
 }
 
 local shooting       = false;
@@ -38,7 +40,7 @@ end
 
 
 local function GunReset()
-    AutoShotCastbarBar:SetVertexColor(1,1,0);
+    AutoShotCastbarBar:SetVertexColor(CBConfig.aimingColor.r, CBConfig.aimingColor.g, CBConfig.aimingColor.b);
 
     reloadingStart = false;
     posX, posY     = GetPlayerMapPosition("player");
@@ -48,7 +50,7 @@ end
 
 
 local function GunReload()
-    AutoShotCastbarBar:SetVertexColor(1,0,0);
+    AutoShotCastbarBar:SetVertexColor(CBConfig.reloadColor.r, CBConfig.reloadColor.g, CBConfig.reloadColor.b);
 
     reloadingStart = GetTime();
     reloadingTime  = UnitRangedDamage("player") - aimingTime;
@@ -58,14 +60,14 @@ end
 
 
 function HSK_Module_AutoShotCastbar_CreateBar()
-    local posX              = castbarFrame["posX"]   * GetScreenWidth()   / 1000;
-    local posY              = castbarFrame["posY"]   * GetScreenHeight()  / 1000;
-    local height            = castbarFrame["height"] * GetScreenHeight()  / 1000;
-    local width             = castbarFrame["width"]  * GetScreenWidth()   / 1000;
-    local innerBorderHeight = castbarFrame["innerBorderHeight"];
-    local innerBorderWidth  = castbarFrame["innerBorderWidth"];
-    local outerBorderHeight = castbarFrame["outerBorderHeight"];
-    local outerBorderWidth  = castbarFrame["outerBorderWidth"];
+    local posX              = CBConfig.x      * GetScreenWidth()  / 1000;
+    local posY              = CBConfig.y      * GetScreenHeight() / 1000;
+    local height            = CBConfig.height * GetScreenHeight() / 1000;
+    local width             = CBConfig.width  * GetScreenWidth()  / 1000;
+    local innerBorderHeight = CBConfig.innerBorder.height;
+    local innerBorderWidth  = CBConfig.innerBorder.width;
+    local outerBorderHeight = CBConfig.outerBorder.height;
+    local outerBorderWidth  = CBConfig.outerBorder.width;
 
     local frame = HSK_MODULE_AUTOSHOTCASTBAR;
     frame:SetHeight(height);
@@ -108,14 +110,14 @@ function HSK_Module_AutoShotCastbar_OnUpdate()
             local cposX, cposY = GetPlayerMapPosition("player");
 
             if cposX == posX and cposY == posY then
-                AutoShotCastbarFrame:SetAlpha(castbarFrame["visibleAlpha"]);
+                AutoShotCastbarFrame:SetAlpha(CBConfig.alpha.visible);
 
                 local timePassed = GetTime() - aimingStart;
                 if timePassed <= aimingTime then
                     AutoShotCastbarBar:SetWidth(AutoShotCastbarFrame:GetWidth() * timePassed/aimingTime);
                 end
             else
-                AutoShotCastbarFrame:SetAlpha(castbarFrame["hiddenAlpha"]);
+                AutoShotCastbarFrame:SetAlpha(CBConfig.alpha.hidden);
                 GunReset();
             end
         end
@@ -127,7 +129,7 @@ function HSK_Module_AutoShotCastbar_OnUpdate()
             );
         else
             if not shooting then
-                AutoShotCastbarFrame:SetAlpha(castbarFrame["hiddenAlpha"]);
+                AutoShotCastbarFrame:SetAlpha(CBConfig.alpha.hidden);
                 AutoShotCastbarBar:SetWidth(0);
             end
             GunReset();
@@ -148,7 +150,7 @@ HSK_Module_AutoShotCastbar_OnEvent["STOP_AUTOREPEAT_SPELL"] = function()
     aimingStart = false;
 
     if not reloadingStart then
-        AutoShotCastbarFrame:SetAlpha(castbarFrame["hiddenAlpha"]);
+        AutoShotCastbarFrame:SetAlpha(CBConfig.alpha.hidden);
     end
 end
 
