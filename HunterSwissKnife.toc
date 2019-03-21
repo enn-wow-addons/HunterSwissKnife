@@ -10,6 +10,7 @@
 
 Core\Aliases\Auras.lua
 Core\Aliases\Colors.lua
+Core\Castbar.lua
 Core\Core.lua
 
 Locale\enUS.lua

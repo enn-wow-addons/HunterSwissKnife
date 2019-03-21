@@ -1,57 +1,3 @@
-local CastBar = {}
-CastBar.__index = CastBar;
-
-function CastBar:new()
-    local newObj = {}
-    return setmetatable(newObj, CastBar);
-end
-
-function CastBar:applyConfig(config)
-    local posX              = self.config.x      * GetScreenWidth()  / 1000;
-    local posY              = self.config.y      * GetScreenHeight() / 1000;
-    local height            = self.config.height * GetScreenHeight() / 1000;
-    local width             = self.config.width  * GetScreenWidth()  / 1000;
-    local innerBorderHeight = self.config.innerBorder.height;
-    local innerBorderWidth  = self.config.innerBorder.width;
-    local outerBorderHeight = self.config.outerBorder.height;
-    local outerBorderWidth  = self.config.outerBorder.width;
-
-    self.frame:SetHeight(height);
-    self.frame:SetWidth(width);
-    self.frame:SetPoint("CENTER", UIParent, "CENTER", posX, posY);
-
-    self.bar:SetHeight(height);
-    self.bar:SetWidth(width);
-
-    self.innerBorder:SetHeight(height + innerBorderHeight);
-    self.innerBorder:SetWidth(width + innerBorderWidth);
-
-    self.outerBorder:SetHeight(height + innerBorderHeight + outerBorderHeight);
-    self.outerBorder:SetWidth(width + innerBorderWidth + outerBorderWidth);
-end
-
-local CastBarConfig = {}
-CastBarConfig.__index = CastBarConfig;
-
-function CastBarConfig:new()
-    local newObj = {
-        x           = 0;
-        y           = -235;
-        height      = 12;
-        width       = 100;
-
-        innerBorder = { height = 4, width  = 4 };
-        outerBorder = { height = 2, width  = 2 };
-
-        reloadColor = { r = 1, g = 0, b = 0 };
-        aimingColor = { r = 1, g = 1, b = 0 };
-
-        alpha       = { visible = 1, hidden  = 0 };
-    };
-
-    return setmetatable(newObj, CastBarConfig);
-end
-
 local AutoShotCastBar;
 
 local shooting       = false;
@@ -105,13 +51,13 @@ local function GunReload()
 end
 
 function HSK_Module_AutoShotCastbar_CreateBar()
-    AutoShotCastBar             = CastBar:new();
+    AutoShotCastBar             = HSK_Core_Castbar:new();
     AutoShotCastBar.frame       = HSK_MODULE_AUTOSHOTCASTBAR;
     AutoShotCastBar.bar         = HSK_MODULE_AUTOSHOTCASTBAR_BAR;
     AutoShotCastBar.innerBorder = HSK_MODULE_AUTOSHOTCASTBAR_INNERBORDER;
     AutoShotCastBar.outerBorder = HSK_MODULE_AUTOSHOTCASTBAR_OUTERBORDER;
 
-    AutoShotCastBar.config = CastBarConfig:new();
+    AutoShotCastBar.config = HSK_Core_CastbarConfig:new();
     AutoShotCastBar:applyConfig();
 end
 
