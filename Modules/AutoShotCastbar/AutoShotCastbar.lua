@@ -1,20 +1,58 @@
-local AutoShotCastbarFrame;
-local AutoShotCastbarBar;
+local CastBar = {}
+CastBar.__index = CastBar;
 
-local CBConfig = {
-    x           = 0;
-    y           = -235;
-    height      = 12;
-    width       = 100;
+function CastBar:new()
+    local newObj = {}
+    return setmetatable(newObj, CastBar);
+end
 
-    innerBorder = { height = 4, width  = 4 };
-    outerBorder = { height = 2, width  = 2 };
+function CastBar:applyConfig(config)
+    local posX              = self.config.x      * GetScreenWidth()  / 1000;
+    local posY              = self.config.y      * GetScreenHeight() / 1000;
+    local height            = self.config.height * GetScreenHeight() / 1000;
+    local width             = self.config.width  * GetScreenWidth()  / 1000;
+    local innerBorderHeight = self.config.innerBorder.height;
+    local innerBorderWidth  = self.config.innerBorder.width;
+    local outerBorderHeight = self.config.outerBorder.height;
+    local outerBorderWidth  = self.config.outerBorder.width;
 
-    reloadColor = { r = 1, g = 0, b = 0 };
-    aimingColor = { r = 1, g = 1, b = 0 };
+    self.frame:SetHeight(height);
+    self.frame:SetWidth(width);
+    self.frame:SetPoint("CENTER", UIParent, "CENTER", posX, posY);
 
-    alpha       = { visible = 1, hidden  = 0 };
-}
+    self.bar:SetHeight(height);
+    self.bar:SetWidth(width);
+
+    self.innerBorder:SetHeight(height + innerBorderHeight);
+    self.innerBorder:SetWidth(width + innerBorderWidth);
+
+    self.outerBorder:SetHeight(height + innerBorderHeight + outerBorderHeight);
+    self.outerBorder:SetWidth(width + innerBorderWidth + outerBorderWidth);
+end
+
+local CastBarConfig = {}
+CastBarConfig.__index = CastBarConfig;
+
+function CastBarConfig:new()
+    local newObj = {
+        x           = 0;
+        y           = -235;
+        height      = 12;
+        width       = 100;
+
+        innerBorder = { height = 4, width  = 4 };
+        outerBorder = { height = 2, width  = 2 };
+
+        reloadColor = { r = 1, g = 0, b = 0 };
+        aimingColor = { r = 1, g = 1, b = 0 };
+
+        alpha       = { visible = 1, hidden  = 0 };
+    };
+
+    return setmetatable(newObj, CastBarConfig);
+end
+
+local AutoShotCastBar;
 
 local shooting       = false;
 
@@ -40,7 +78,11 @@ end
 
 
 local function GunReset()
-    AutoShotCastbarBar:SetVertexColor(CBConfig.aimingColor.r, CBConfig.aimingColor.g, CBConfig.aimingColor.b);
+    AutoShotCastBar.bar:SetVertexColor(
+        AutoShotCastBar.config.aimingColor.r,
+        AutoShotCastBar.config.aimingColor.g,
+        AutoShotCastBar.config.aimingColor.b
+    );
 
     reloadingStart = false;
     posX, posY     = GetPlayerMapPosition("player");
@@ -50,7 +92,11 @@ end
 
 
 local function GunReload()
-    AutoShotCastbarBar:SetVertexColor(CBConfig.reloadColor.r, CBConfig.reloadColor.g, CBConfig.reloadColor.b);
+    AutoShotCastBar.bar:SetVertexColor(
+        AutoShotCastBar.config.reloadColor.r,
+        AutoShotCastBar.config.reloadColor.g,
+        AutoShotCastBar.config.reloadColor.b
+    );
 
     reloadingStart = GetTime();
     reloadingTime  = UnitRangedDamage("player") - aimingTime;
@@ -58,36 +104,15 @@ local function GunReload()
     aimingStart    = false;
 end
 
-
 function HSK_Module_AutoShotCastbar_CreateBar()
-    local posX              = CBConfig.x      * GetScreenWidth()  / 1000;
-    local posY              = CBConfig.y      * GetScreenHeight() / 1000;
-    local height            = CBConfig.height * GetScreenHeight() / 1000;
-    local width             = CBConfig.width  * GetScreenWidth()  / 1000;
-    local innerBorderHeight = CBConfig.innerBorder.height;
-    local innerBorderWidth  = CBConfig.innerBorder.width;
-    local outerBorderHeight = CBConfig.outerBorder.height;
-    local outerBorderWidth  = CBConfig.outerBorder.width;
+    AutoShotCastBar             = CastBar:new();
+    AutoShotCastBar.frame       = HSK_MODULE_AUTOSHOTCASTBAR;
+    AutoShotCastBar.bar         = HSK_MODULE_AUTOSHOTCASTBAR_BAR;
+    AutoShotCastBar.innerBorder = HSK_MODULE_AUTOSHOTCASTBAR_INNERBORDER;
+    AutoShotCastBar.outerBorder = HSK_MODULE_AUTOSHOTCASTBAR_OUTERBORDER;
 
-    local frame = HSK_MODULE_AUTOSHOTCASTBAR;
-    frame:SetHeight(height);
-    frame:SetWidth(width);
-    frame:SetPoint("CENTER", UIParent, "CENTER", posX, posY);
-
-    local bar = HSK_MODULE_AUTOSHOTCASTBAR_BAR;
-    bar:SetHeight(height);
-    bar:SetWidth(width);
-
-    local innerBorder = HSK_MODULE_AUTOSHOTCASTBAR_INNERBORDER;
-    innerBorder:SetHeight(height + innerBorderHeight);
-    innerBorder:SetWidth(width + innerBorderWidth);
-
-    local outerBorder = HSK_MODULE_AUTOSHOTCASTBAR_OUTERBORDER;
-    outerBorder:SetHeight(height + innerBorderHeight + outerBorderHeight);
-    outerBorder:SetWidth(width + innerBorderWidth + outerBorderWidth);
-
-    AutoShotCastbarFrame = frame;
-    AutoShotCastbarBar   = bar;
+    AutoShotCastBar.config = CastBarConfig:new();
+    AutoShotCastBar:applyConfig();
 end
 
 
@@ -110,27 +135,27 @@ function HSK_Module_AutoShotCastbar_OnUpdate()
             local cposX, cposY = GetPlayerMapPosition("player");
 
             if cposX == posX and cposY == posY then
-                AutoShotCastbarFrame:SetAlpha(CBConfig.alpha.visible);
+                AutoShotCastBar.frame:SetAlpha(AutoShotCastBar.config.alpha.visible);
 
                 local timePassed = GetTime() - aimingStart;
                 if timePassed <= aimingTime then
-                    AutoShotCastbarBar:SetWidth(AutoShotCastbarFrame:GetWidth() * timePassed/aimingTime);
+                    AutoShotCastBar.bar:SetWidth(AutoShotCastBar.frame:GetWidth() * timePassed/aimingTime);
                 end
             else
-                AutoShotCastbarFrame:SetAlpha(CBConfig.alpha.hidden);
+                AutoShotCastBar.frame:SetAlpha(AutoShotCastBar.config.alpha.hidden);
                 GunReset();
             end
         end
     else
         local timePassed = GetTime() - reloadingStart;
         if timePassed <= reloadingTime then
-            AutoShotCastbarBar:SetWidth(
-                AutoShotCastbarFrame:GetWidth() - (AutoShotCastbarFrame:GetWidth() * timePassed/reloadingTime)
+            AutoShotCastBar.bar:SetWidth(
+                AutoShotCastBar.frame:GetWidth() - (AutoShotCastBar.frame:GetWidth() * timePassed/reloadingTime)
             );
         else
             if not shooting then
-                AutoShotCastbarFrame:SetAlpha(CBConfig.alpha.hidden);
-                AutoShotCastbarBar:SetWidth(0);
+                AutoShotCastBar.frame:SetAlpha(AutoShotCastBar.config.alpha.hidden);
+                AutoShotCastBar.bar:SetWidth(0);
             end
             GunReset();
         end
@@ -150,7 +175,7 @@ HSK_Module_AutoShotCastbar_OnEvent["STOP_AUTOREPEAT_SPELL"] = function()
     aimingStart = false;
 
     if not reloadingStart then
-        AutoShotCastbarFrame:SetAlpha(CBConfig.alpha.hidden);
+        AutoShotCastBar.frame:SetAlpha(AutoShotCastBar.config.alpha.hidden);
     end
 end
 
