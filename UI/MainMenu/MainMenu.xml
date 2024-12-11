@@ -28,8 +28,8 @@
             <CheckButton name="$parent_CHECKBOX_ASPECTSANTIDAZE"
                          inherits="OptionsCheckButtonTemplate">
                 <Anchors>
-                    <Anchor point="TOP" 
-                            relativeTo="$parent_CHECKBOX_ASPECTSOVERRIDE" 
+                    <Anchor point="TOP"
+                            relativeTo="$parent_CHECKBOX_ASPECTSOVERRIDE"
                             relativePoint="BOTTOM"/>
                 </Anchors>
 
@@ -46,8 +46,8 @@
             <CheckButton name="$parent_CHECKBOX_AIMEDSHOTCASTBAR"
                          inherits="OptionsCheckButtonTemplate">
                 <Anchors>
-                    <Anchor point="TOP" 
-                            relativeTo="$parent_CHECKBOX_ASPECTSANTIDAZE" 
+                    <Anchor point="TOP"
+                            relativeTo="$parent_CHECKBOX_ASPECTSANTIDAZE"
                             relativePoint="BOTTOM"/>
                 </Anchors>
 
@@ -65,8 +65,8 @@
             <CheckButton name="$parent_CHECKBOX_AUTOSHOTCASTBAR"
                          inherits="OptionsCheckButtonTemplate">
                 <Anchors>
-                    <Anchor point="TOPLEFT" 
-                            relativeTo="$parent_CHECKBOX_ASPECTSOVERRIDE" 
+                    <Anchor point="TOPLEFT"
+                            relativeTo="$parent_CHECKBOX_ASPECTSOVERRIDE"
                             relativePoint="TOPRIGHT">
                         <Offset x="120" y="0"/>
                     </Anchor>
@@ -103,8 +103,8 @@
             <CheckButton name="$parent_CHECKBOX_CALLPETOVERRIDE"
                          inherits="OptionsCheckButtonTemplate">
                 <Anchors>
-                    <Anchor point="TOP" 
-                            relativeTo="$parent_CHECKBOX_AUTOSHOTOVERRIDE" 
+                    <Anchor point="TOP"
+                            relativeTo="$parent_CHECKBOX_AUTOSHOTOVERRIDE"
                             relativePoint="BOTTOM"/>
                 </Anchors>
 
@@ -119,8 +119,8 @@
             </CheckButton>
 
 
-            <Button name="$parent_BUTTON_DEFAULT" 
-                    inherits="OptionsButtonTemplate" 
+            <Button name="$parent_BUTTON_DEFAULT"
+                    inherits="OptionsButtonTemplate"
                     text="HSK_UI_MAINMENU_BUTTON_DEFAULT_TEXT">
                 <Anchors>
                     <Anchor point="BOTTOMLEFT">
@@ -135,8 +135,8 @@
                 </Scripts>
             </Button>
 
-            <Button name="$parent_BUTTON_SAVE" 
-                    inherits="OptionsButtonTemplate" 
+            <Button name="$parent_BUTTON_SAVE"
+                    inherits="OptionsButtonTemplate"
                     text="HSK_UI_MAINMENU_BUTTON_SAVE_TEXT">
                 <Anchors>
                     <Anchor point="BOTTOMRIGHT">

@@ -87,7 +87,7 @@ function UseAction(slot, checkCursor, onSelf)
 
     if HSK_Settings.AimedShotCastbar.Enabled and HSK_Module_AimedShotCastbar_OnAction[spellName] then
         HSK_Module_AimedShotCastbar_OnAction[spellName](slot, checkCursor, onSelf);
-    end    
+    end
     if HSK_Settings.AspectsOverride.Enabled and HSK_Module_AspectsOverride_OnAction[spellName] then
         HSK_Module_AspectsOverride_OnAction[spellName](slot, checkCursor, onSelf);
         isOriginalExcluded = true;

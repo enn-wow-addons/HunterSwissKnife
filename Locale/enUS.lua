@@ -42,6 +42,7 @@
     HSK_SPELL_PACK_NAME           = "Aspect of the Pack";
     HSK_SPELL_BEAST_NAME          = "Aspect of the Beast";
     HSK_SPELL_WILD_NAME           = "Aspect of the Wild";
+    HSK_SPELL_WOLF_NAME           = "Aspect of the Wolf";
 
     HSK_SPELL_AUTOSHOT_NAME       = "Auto Shot";
     HSK_SPELL_AIMEDSHOT_NAME      = "Aimed Shot";
@@ -58,7 +59,7 @@
     HSK_SPELL_FREEZINGTRAP_NAME   = "Freezing Trap";
     HSK_SPELL_EXPLOSIVETRAP_NAME  = "Explosive Trap";
     HSK_SPELL_IMMOLATIONTRAP_NAME = "Immolation Trap";
-    
+
     HSK_SPELL_WINGCLIP_NAME       = "Wing Clip";
     HSK_SPELL_COUNTERATTACK_NAME  = "Counterattack";
     HSK_SPELL_DETERRENCE_NAME     = "Deterrence";
@@ -68,6 +69,6 @@
     HSK_SPELL_FLARE_NAME          = "Flare";
 
     HSK_SPELL_CALLPET_NAME        = "Call Pet";
-    HSK_SPELL_SCAREBEAST_NAME     = "Scare Beast";   
+    HSK_SPELL_SCAREBEAST_NAME     = "Scare Beast";
 
 -- end

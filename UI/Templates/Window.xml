@@ -34,7 +34,7 @@
                     </Anchors>
                 </Texture>
 
-                <FontString inherits="GameFontNormal" 
+                <FontString inherits="GameFontNormal"
                             text="HSK_UI_TEMPLATE_WINDOW_HEADER_TEXT">
                     <Anchors>
                         <Anchor point="TOP" relativeTo="$parent_HEADER">
@@ -46,7 +46,7 @@
         </Layers>
 
         <Frames>
-            <Button name="$parent_CLOSE" 
+            <Button name="$parent_CLOSE"
                     inherits="UIPanelCloseButton">
                 <Anchors>
                     <Anchor point="TOPRIGHT">

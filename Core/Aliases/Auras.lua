@@ -7,6 +7,7 @@ HSK_AURA_CHEETAH_ICON          = "Interface\\Icons\\Ability_Mount_JungleTiger";
 HSK_AURA_PACK_ICON             = "Interface\\Icons\\Ability_Mount_WhiteTiger";
 HSK_AURA_BEAST_ICON            = "Interface\\Icons\\Ability_Mount_PinkTiger";
 HSK_AURA_WILD_ICON             = "Interface\\Icons\\Spell_Nature_ProtectionformNature";
+HSK_AURA_WOLF_ICON             = "Interface\\Icons\\Ability_Mount_WhiteDireWolf";
 
 HSK_AURA_QUICKSHOTS_ICON       = "Interface\\Icons\\Ability_Warrior_InnerRage";
 HSK_AURA_RAPIDFIRE_ICON        = "Interface\\Icons\\Ability_Hunter_RunningShot";

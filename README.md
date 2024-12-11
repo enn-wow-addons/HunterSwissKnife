@@ -39,7 +39,7 @@ All changes are optional and can be switched off in configuration menu `/hsk`
 `/hsk` or `/hunterswissknife` - open the configuration menu.
 
 ## FAQ
-**How can I report a bug?** 
+**How can I report a bug?**
 Report errors and issues [here](https://github.com/anstellaire/HunterSwissKnife/issues) with `bug` or `issue` label.
 If there is an error message, make sure to have the latest version installed.
 If the error message is still there, please provide the folowing information:

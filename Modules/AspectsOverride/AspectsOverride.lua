@@ -35,3 +35,10 @@ HSK_Module_AspectsOverride_OnAction[HSK_SPELL_WILD_NAME] = function(slot, checkC
         CastSpellByName(HSK_SPELL_WILD_NAME);
     end
 end
+
+
+HSK_Module_AspectsOverride_OnAction[HSK_SPELL_WOLF_NAME] = function(slot, checkCursor, onSelf)
+    if not HSK_Core_IsBuffActive(HSK_AURA_WOLF_ICON, "player") then
+        CastSpellByName(HSK_SPELL_WOLF_NAME);
+    end
+end
