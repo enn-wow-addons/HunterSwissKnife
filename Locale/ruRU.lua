@@ -42,6 +42,7 @@ if GetLocale() == "ruRU" then
     HSK_SPELL_PACK_NAME           = "Дух стаи";
     HSK_SPELL_BEAST_NAME          = "Дух зверя";
     HSK_SPELL_WILD_NAME           = "Дух дикой природы";
+    HSK_SPELL_WOLF_NAME           = "Дух волка";
 
     HSK_SPELL_AUTOSHOT_NAME       = "Автоматическая стрельба";
     HSK_SPELL_AIMEDSHOT_NAME      = "Прицельный выстрел";

@@ -45,6 +45,7 @@ if GetLocale() == "zhCN" then
     HSK_SPELL_PACK_NAME           = "豹群守护";
     HSK_SPELL_BEAST_NAME          = "野兽守护";
     HSK_SPELL_WILD_NAME           = "野性守护";
+    HSK_SPELL_WOLF_NAME           = "孤狼守护";
 
     HSK_SPELL_AUTOSHOT_NAME       = "自动射击";
     HSK_SPELL_AIMEDSHOT_NAME      = "瞄准射击";
